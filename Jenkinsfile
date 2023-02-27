@@ -9,6 +9,11 @@ pipeline {
         stage ('Unit Tests') {
             steps {
                 bat 'dotnet test --logger:"trx;logFileName=%WORKSPACE%/tests/report.xml"'
+                input(
+                      testRunner: XUnit
+                      testResultsFiles: %WORKSPACE%/tests/report.xml
+                      failTaskOnFailedTests: true
+                )
             }
         }
         stage ('Sonar Analysis') {
