@@ -11,5 +11,16 @@ pipeline {
                 bat 'dotnet test --logger:"trx;logFileName=%WORKSPACE%/tests/report.xml"'
             }
         }
+         stage ('Sonar Analysis') {
+            environment{
+                scannerHome = tool 'SONAR_SCANNER'
+            } 
+            steps {
+                withSonarQubeEnv('SONAR_LOCAL')
+                bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=TesteIntegracaoxUnit "
+            }
+        }
     }
 }
+
+
