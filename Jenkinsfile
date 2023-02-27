@@ -7,4 +7,11 @@ pipeline {
             }
         }
     }
+     stages {
+        stage ('Unit Tests') {
+            steps {
+                bat 'dotnet test --logger:"trx;logFileName=%WORKSPACE%/tests/report.xml"'
+            }
+        }
+    }
 }
