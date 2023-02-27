@@ -17,7 +17,7 @@ pipeline {
             } 
             steps {
                 withSonarQubeEnv('SONAR_LOCAL')
-                bat "SonarScanner.MSBuild.exe begin /k:"TesteIntegracaoxUnit""
+                bat 'SonarScanner.MSBuild.exe begin /k:"TesteIntegracaoxUnit"'
             }
         }
     }
