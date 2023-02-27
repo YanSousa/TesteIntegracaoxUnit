@@ -11,13 +11,15 @@ pipeline {
                 bat 'dotnet test --logger:"trx;logFileName=%WORKSPACE%/tests/report.xml"'
             }
         }
-         stage ('Sonar Analysis') {
+        stage ('Sonar Analysis') {
             environment{
                 scannerHome = tool 'SONAR_SCANNER'
+                def sqScannerMsBuildHome = tool 'Scanner for MSBuild 5.9'
             } 
             steps {
-                withSonarQubeEnv('SONAR_LOCAL')
-                bat 'SonarScanner.MSBuild.exe begin /k:"TesteIntegracaoxUnit"'
+                 bat "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe begin /k:TesteIntegracaoxUnit"
+                 bat 'MSBuild.exe /t:Rebuild'
+                 bat "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe end"
             }
         }
     }
