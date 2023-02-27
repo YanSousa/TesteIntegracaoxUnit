@@ -17,7 +17,7 @@ pipeline {
             } 
             steps {
                  bat 'dotnet C:\\Users\\Metris\\.jenkins\\tools\\hudson.plugins.sonar.MsBuildSQRunnerInstallation\\SONAR_MSBuild\\SonarScanner.MSBuild.dll begin /k:TesteIntegracaoxUnit /n: /v: /d:sonar.host.url=http://localhost:9000/'
-                 bat 'dotnet C:\Users\Metris\.jenkins\tools\hudson.plugins.sonar.MsBuildSQRunnerInstallation\SONAR_MSBuild\SonarScanner.MSBuild.dll end'
+                 bat 'dotnet C:\\Users\\Metris\\.jenkins\\tools\\hudson.plugins.sonar.MsBuildSQRunnerInstallation\\SONAR_MSBuild\\SonarScanner.MSBuild.dll end'
             }
         }
     }
