@@ -14,12 +14,9 @@ pipeline {
         stage ('Sonar Analysis') {
             environment{
                 scannerHome = tool 'SONAR_SCANNER'
-                def sqScannerMsBuildHome = tool 'Scanner for MSBuild 5.9'
             } 
             steps {
-                 bat "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe begin /k:TesteIntegracaoxUnit"
-                 bat 'MSBuild.exe /t:Rebuild'
-                 bat "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe end"
+                 bat 'dotnet C:\Users\Metris\.jenkins\tools\hudson.plugins.sonar.MsBuildSQRunnerInstallation\SONAR_MSBuild\SonarScanner.MSBuild.dll begin /k:TesteIntegracaoxUnit /n: /v: /d:sonar.host.url=http://localhost:9000/ ********'
             }
         }
     }
