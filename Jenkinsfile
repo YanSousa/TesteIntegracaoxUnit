@@ -17,7 +17,7 @@ pipeline {
             } 
             steps {
                 withSonarQubeEnv('SONAR_LOCAL')
-                bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=TesteIntegracaoxUnit "
+                bat "SonarScanner.MSBuild.exe begin /k:"TesteIntegracaoxUnit""
             }
         }
     }
