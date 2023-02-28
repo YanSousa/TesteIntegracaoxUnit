@@ -30,7 +30,7 @@ pipeline {
         }
           stage ('ISO') {
             steps {
-               archiveArtifacts artifacts: 'arget/*.jar',
+               archiveArtifacts artifacts: '**/*.txt',
                                            allowEmptyArchive: true,
                                            fingerprint: true,
                                            onlyIfSuccessful: true
