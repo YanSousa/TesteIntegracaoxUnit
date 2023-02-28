@@ -7,7 +7,7 @@ pipeline {
                 bat 'dotnet clean && dotnet build'
             }
         }
-        stage ('   Unit Tests') {
+        stage ('Unit Tests') {
             steps {
                 bat 'dotnet test --logger:"trx;logFileName=%WORKSPACE%/tests/report.xml"'
                 xunit (tools: [ MSTest(pattern: 'tests/*.xml') ], skipPublishingChecks: false)
@@ -36,7 +36,7 @@ pipeline {
                echo 'File created successfully!'
             }
         }
-        stage ('    ISO') {
+        stage ('ISO') {
             steps {
                archiveArtifacts artifacts: '**/report_2023.R3.txt, **/*.iso',
                                            allowEmptyArchive: true,
