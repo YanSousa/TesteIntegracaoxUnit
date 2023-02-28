@@ -28,6 +28,14 @@ pipeline {
                  }
             }
         }
+          stage ('ISO') {
+            steps {
+               archiveArtifacts artifacts: Metris.Wizard.iso,
+                                           allowEmptyArchive: true,
+                                           fingerprint: true,
+                                           onlyIfSuccessful: true
+            }
+        }
     }
 }
 
