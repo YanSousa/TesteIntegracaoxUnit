@@ -38,7 +38,7 @@ pipeline {
         }
         stage ('ISO') {
             steps {
-               archiveArtifacts artifacts: '**/report_2023.R3.txt,*.iso',
+               archiveArtifacts artifacts: '**/report_2023.R3.txt, **/*.iso',
                                            allowEmptyArchive: true,
                                            fingerprint: true,
                                            onlyIfSuccessful: true
