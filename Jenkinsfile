@@ -30,7 +30,7 @@ pipeline {
         }
         stage ('Vulnerability') {
             steps {
-               bat 'rm report_2023.R3.txt' 
+               bat 'del “ report_2023.R3.txt”' 
                powershell 'dotnet list package --vulnerable --include-transitive >>report_2023.R3.txt'
                findFiles excludes: 'report_2023.R3.txt'
             }
