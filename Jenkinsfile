@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-          stage ('Quality Gate') {
+        stage ('Quality Gate') {
             steps {
                 sleep(30)
                 timeout(time: 5, unit: 'MINUTES'){
@@ -28,13 +28,12 @@ pipeline {
                  }
             }
         }
-               stage ('Vulnerability') {
+        stage ('Vulnerability') {
             steps {
                powershell 'dotnet list package --vulnerable --include-transitive >>report_2023.R3.txt'
-               echo done >> "%WORKSPACE%\\report_2022.R1.txt"
             }
         }
-          stage ('ISO') {
+        stage ('ISO') {
             steps {
                archiveArtifacts artifacts: '**/*.txt',
                                            allowEmptyArchive: true,
