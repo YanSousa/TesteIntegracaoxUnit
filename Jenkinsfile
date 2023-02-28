@@ -30,7 +30,7 @@ pipeline {
         }
           stage ('ISO') {
             steps {
-               archiveArtifacts artifacts: '**/*.iso',
+               archiveArtifacts artifacts: '**\\.jenkins\\workspace\\Metris.Wizard.iso',
                                            allowEmptyArchive: true,
                                            fingerprint: true,
                                            onlyIfSuccessful: true
