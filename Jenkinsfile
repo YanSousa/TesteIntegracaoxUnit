@@ -44,6 +44,27 @@ pipeline {
                                            onlyIfSuccessful: true
             }
         }
+         stage ('ISO') {
+            steps {
+               archiveArtifacts artifacts: '**/report_2023.R3.txt, **/*.iso',
+                                           allowEmptyArchive: true,
+                                           fingerprint: true,
+                                           onlyIfSuccessful: true
+            }
+        }
+           stage ('Health Check Server') {
+            steps {
+               script{
+                def server = "10.61.249.201"
+                def response = sh(script: "ping -n 1 ${server}", returnStdout: true)
+                if (response.contains("Resposta")){
+                 echo "O servidor ${server} está online"
+                }else{
+                  error "O servidor ${server} está offline"
+                }
+               }
+            }
+        }
     }
 }
 
