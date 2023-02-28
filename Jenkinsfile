@@ -15,7 +15,7 @@ pipeline {
         }
         stage ('Sonar Analysis') {
             steps {
-                withSonarQubeEnv('SONAR_LOCAL_QG'){
+                withSonarQubeEnv('SONAR_LOCAL'){
                  bat 'dotnet C:\\Users\\Metris\\.jenkins\\tools\\hudson.plugins.sonar.MsBuildSQRunnerInstallation\\SONAR_MSBuild\\SonarScanner.MSBuild.dll end'
                 }
             }
