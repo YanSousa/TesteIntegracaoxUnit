@@ -30,7 +30,7 @@ pipeline {
         }
                stage ('Vulnerability') {
             steps {
-               bat 'dotnet list package --vulnerable --include-transitive >> C:\\Users\\Metris\\.jenkins\\workspace\\Pepiline\\report_2023.R3.txt'
+               bat 'dotnet list package --vulnerable --include-transitive >> report_2023.R3.txt'
                echo done >> "%WORKSPACE%\\report_2022.R1.txt"
             }
         }
