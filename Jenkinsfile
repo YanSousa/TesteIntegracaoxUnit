@@ -14,11 +14,16 @@ pipeline {
             }
         }
         stage ('Sonar Analysis') {
-            environment{
-                scannerHome = tool 'SONAR_SCANNER'
             } 
             steps {
                  bat 'dotnet C:\\Users\\Metris\\.jenkins\\tools\\hudson.plugins.sonar.MsBuildSQRunnerInstallation\\SONAR_MSBuild\\SonarScanner.MSBuild.dll end'
+            }
+        }
+         stage ('Quality Gate') {
+            steps {
+                sleep(10)
+                timeout(time: 1, unit: 'MINUTES')
+                 waitForQualityGate abortPepiline: true
             }
         }
     }
