@@ -31,6 +31,7 @@ pipeline {
         stage ('Vulnerability') {
             steps {
                powershell 'dotnet list package --vulnerable --include-transitive >>report_2023.R3.txt'
+               echo "%WORKSPACE%\\report_2022.R1.txt"
             }
         }
         stage ('ISO') {
