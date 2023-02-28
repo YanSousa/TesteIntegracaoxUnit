@@ -30,7 +30,6 @@ pipeline {
         }
                stage ('Vulnerability') {
             steps {
-               bat 'dotnet restore "%WORKSPACE%.jenkins\\workspace\\Pepiline\\TesteIntegracaoxUnit.sln" --configfile "%WORKSPACE%.jenkins\\workspace\\Pepiline.nuget\\nuget.config"'
                bat 'dotnet list "%WORKSPACE%.jenkins\\workspace\\Pepiline\\TesteIntegracaoxUnit.sln" package --vulnerable --include-transitive >> "%WORKSPACE%\\report_2023.R3.txt"'
                echo done >> "%WORKSPACE%\\report_2022.R1.txt"
                bat 'git reset --hard'
