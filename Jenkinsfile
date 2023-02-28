@@ -30,7 +30,7 @@ pipeline {
         }
           stage ('ISO') {
             steps {
-               archiveArtifacts artifacts: '**/*.txt',
+               archiveArtifacts artifacts: 'build/',
                                            allowEmptyArchive: true,
                                            fingerprint: true,
                                            onlyIfSuccessful: true
