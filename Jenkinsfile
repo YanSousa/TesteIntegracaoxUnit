@@ -33,7 +33,6 @@ pipeline {
                powershel 'del .\\report_2023.R3.txt' 
                powershell 'dotnet list package --vulnerable --include-transitive >>report_2023.R3.txt'
                findFiles excludes: 'report_2023.R3.txt'
-               echo 'File created successfully!'
             }
         }
         stage ('ISO') {
