@@ -44,15 +44,7 @@ pipeline {
                                            onlyIfSuccessful: true
             }
         }
-         stage ('ISO') {
-            steps {
-               archiveArtifacts artifacts: '**/report_2023.R3.txt, **/*.iso',
-                                           allowEmptyArchive: true,
-                                           fingerprint: true,
-                                           onlyIfSuccessful: true
-            }
-        }
-           stage ('Health Check Server') {
+        stage ('Health Check Server') {
             steps {
                script{
                 def server = "10.61.249.201"
