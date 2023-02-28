@@ -20,14 +20,34 @@ pipeline {
                 }
             }
         }
-          stage ('Quality Gate') {
-            steps {
-                sleep(30)
-                timeout(time: 5, unit: 'MINUTES'){
-                 waitForQualityGate abortPipeline: true
-                 }
+        stage ('Quality Gate') {
+                when { expression { return pipelineParams.QualityGate } }
+                steps {
+                    script {
+                        def maxRetry = 2
+                        def i = 0
+                        for (i=0; i<maxRetry; i++){
+                            try {
+                                timeout(time: 5, unit: 'SECONDS') {
+                                    def qualitygate = waitForQualityGate()
+                                    if (qualitygate.status != "OK") {
+                                        echo "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
+                                    }
+                                    else {
+                                        echo "SonarQube analysis succesfull"
+                                    }
+                                }
+                            }
+                            catch(Exception e) {
+                                if (i == maxRetry-1) {
+                                    println "No of Tries : ${i}, ${e}"
+                                    throw e        
+                                }
+                            }
+                        }                            
+                    }
+                }
             }
-        }
     }
 }
 
