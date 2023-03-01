@@ -33,15 +33,15 @@ pipeline {
                 MY_BUILD_NUMBER = "${CUSTOM_BUILD_NUMBER}"
             }
             steps {
-               bat "del ${MY_BUILD_NUMBER}_report_2023.R3.txt"
-               powershell "dotnet list package --vulnerable --include-transitive >>${MY_BUILD_NUMBER}_report_2023.R3.txt"
-               findFiles excludes: "${MY_BUILD_NUMBER}_report_2023.R3.txt"
+               bat "del *_report_2023.R3.txt"
+               powershell "dotnet list package --vulnerable --include-transitive >>${BUILD_NUMBER}_report_2023.R3.txt"
+               findFiles excludes: "${BUILD_NUMBER}_report_2023.R3.txt"
                echo 'File created successfully!'
             }
         }
         stage ('ISO') {
             steps {
-               archiveArtifacts artifacts: "**/${MY_BUILD_NUMBER}_report_2023.R3.txt, **/*.iso",
+               archiveArtifacts artifacts: "**/*_report_2023.R3.txt, **/*.iso",
                                            allowEmptyArchive: true,
                                            fingerprint: true,
                                            onlyIfSuccessful: true
