@@ -48,7 +48,7 @@ pipeline {
             steps {
                script {
                 def server = "10.61.249.201"
-                def response = powershell(script: "ping -n 1 ${server}", returnStdout: true)
+                def response = bat(script: "ping -n 1 ${server}", returnStdout: true)
                 if (response.contains("Resposta")){
                  echo "O servidor ${server} está online"
                 }else{
