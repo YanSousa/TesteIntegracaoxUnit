@@ -36,7 +36,7 @@ pipeline {
                bat "del VulnerabilityReport_*.txt"
                powershell "dotnet list package --vulnerable --include-transitive >>VulnerabilityReport_${BUILD_NUMBER}.txt"
                findFiles excludes: "VulnerabilityReport_${BUILD_NUMBER}.txt"
-               echo 'File created successfully!'
+               echo "File VulnerabilityReport_${BUILD_NUMBER} created successfully!"
             }
         }
         stage ('ISO') {
