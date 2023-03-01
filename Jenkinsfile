@@ -50,9 +50,9 @@ pipeline {
                 def server = "10.61.249.201"
                 def response = bat(script: "ping -n 1 ${server}", returnStdout: true)
                 if (response.contains("Reply")){
-                 echo "O servidor ${server} esta online"
+                 echo "The server ${server} is online"
                 } else {
-                  error "O servidor ${server} esta offline"
+                  error "The server ${server} is offline"
                 }
                }
             }
